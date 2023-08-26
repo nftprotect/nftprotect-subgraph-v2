@@ -40,6 +40,10 @@ export function loadSystem(contract: string): System
     {
         s.arbitratorregistry = dataSource.address();
         needToSave = true;
+    } else if (contract == "requesthub" && !s.requesthub)
+    {
+        s.requesthub = dataSource.address();
+        needToSave = true;
     }
     if (needToSave)
     {

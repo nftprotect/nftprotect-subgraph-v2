@@ -34,7 +34,7 @@ export function handleBurnArbitrateAsked(event: BurnArbitrateAskedEvent): void {
 
 export function handleDeployed(event: DeployedEvent): void
 {
-    const s = loadSystem("core");
+    const s = loadSystem("requesthub");
 }
 
 export function handleDisputeCreated(event: DisputeCreatedEvent): void {}

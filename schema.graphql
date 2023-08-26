@@ -8,6 +8,7 @@ type System @entity
     coupons: Bytes
     core: Bytes
     userregistry: Bytes
+    requesthub: Bytes
     feeBasic: BigInt
     feeUltra: BigInt
     burnOnAction: Boolean
