@@ -15,6 +15,16 @@ import
     OwnershipTransferred as OwnershipTransferredEvent
 } from "../generated/RequestHub/RequestHub"
 
+import
+{
+    loadSystem
+} from "./system"
+
+import
+{
+    loadUser
+} from "./user"
+
 
 export function handleArbitratorRegistryChanged(event: ArbitratorRegistryChangedEvent): void {}
 
@@ -22,7 +32,10 @@ export function handleBurnAnswered(event: BurnAnsweredEvent): void {}
 
 export function handleBurnArbitrateAsked(event: BurnArbitrateAskedEvent): void {}
 
-export function handleDeployed(event: DeployedEvent): void {}
+export function handleDeployed(event: DeployedEvent): void
+{
+    const s = loadSystem("core");
+}
 
 export function handleDisputeCreated(event: DisputeCreatedEvent): void {}
 
@@ -40,4 +53,7 @@ export function handleOwnershipRestoreAnswered(event: OwnershipRestoreAnsweredEv
 
 export function handleOwnershipRestoreAsked(event: OwnershipRestoreAskedEvent): void {}
 
-export function handleOwnershipTransferred(event: OwnershipTransferredEvent): void {}
+export function handleOwnershipTransferred(event: OwnershipTransferredEvent): void
+{
+    // do nothing
+}

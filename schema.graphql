@@ -11,7 +11,6 @@ type System @entity
     feeBasic: BigInt
     feeUltra: BigInt
     burnOnAction: Boolean
-    base: String
     scoreThreshold: BigInt
     affiliatePercent: BigInt
 }
@@ -42,20 +41,16 @@ type User @entity
     referrer: Bytes
     successor: Bytes
     coupons: BigInt!
-    tokensProtected: [Token!] @derivedFrom(field: "ownerProtected")
-    tokensOriginal: [Token!] @derivedFrom(field: "ownerOriginal")
+    entitiesWrapped: [MyEntity!] @derivedFrom(field: "ownerWrapped")
+    entitiesOriginal: [MyEntity!] @derivedFrom(field: "ownerOriginal")
 }
 
-type Token @entity
+type MyEntity @entity
 {
     id: ID!
-    securityLevel: BigInt!
-    ownerProtected: User!
+    protection: BigInt!
     ownerOriginal: User!
-    assetType: BigInt!
-    contract: Bytes!
-    tokenId: BigInt
-    amount: BigInt
+    ownerWrapped: User!
     timestamp: BigInt!
     blocknumber: BigInt!
 }
@@ -91,7 +86,9 @@ enum ReqStatus
     Initial,
     Accepted,
     Rejected,
-    Disputed
+    Disputed,
+    DisputeAccepted,
+    DisputeRejected
 }
 
 type Request @entity
@@ -99,7 +96,7 @@ type Request @entity
     id: ID!
     type: ReqType!
     status: ReqStatus!
-    token: Token!
+    entities: [MyEntity!]
     oldowner: User
     newowner: User
     timestamp: BigInt!
