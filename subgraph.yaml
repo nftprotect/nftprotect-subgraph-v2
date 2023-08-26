@@ -1,0 +1,230 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: NFTProtect2
+    network: sepolia
+    source:
+      address: "0x9895E315D122511d0268e3736f70B955692c4441"
+      abi: NFTProtect2
+      startBlock: 4155984
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BurnOnActionChanged
+        - Deployed
+        - MetaEvidenceLoaderChanged
+        - OwnershipTransferred
+        - ProtectorFactoryRegistered
+        - ProtectorFactoryUnregistered
+        - RequestHubChanged
+        - TechnicalOwnerChanged
+        - UserRegistryChanged
+      abis:
+        - name: NFTProtect2
+          file: ./abis/NFTProtect2.json
+      eventHandlers:
+        - event: BurnOnActionChanged(bool)
+          handler: handleBurnOnActionChanged
+        - event: Deployed()
+          handler: handleDeployed
+        - event: MetaEvidenceLoaderChanged(address)
+          handler: handleMetaEvidenceLoaderChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: ProtectorFactoryRegistered(address)
+          handler: handleProtectorFactoryRegistered
+        - event: ProtectorFactoryUnregistered(address)
+          handler: handleProtectorFactoryUnregistered
+        - event: RequestHubChanged(address)
+          handler: handleRequestHubChanged
+        - event: TechnicalOwnerChanged(address)
+          handler: handleTechnicalOwnerChanged
+        - event: UserRegistryChanged(address)
+          handler: handleUserRegistryChanged
+      file: ./src/nft-protect-2.ts
+  - kind: ethereum
+    name: UserRegistry
+    network: sepolia
+    source:
+      address: "0x397F88729D47d565a9F7b8e5aCE6ee69b173fd61"
+      abi: UserRegistry
+      startBlock: 4156018
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AffiliatePayment
+        - AffiliatePercentChanged
+        - ArbitratorRegistryChanged
+        - DIDRegistered
+        - DIDUnregistered
+        - UserRegistryDeployed
+        - FeeChanged
+        - UserRegistryOwnershipTransferred
+        - PartnerSet
+        - ReferrerSet
+        - RewardedCouponsChanged
+        - ScoreThresholdChanged
+        - SuccessorApproved
+        - SuccessorRejected
+        - SuccessorRequested
+      abis:
+        - name: UserRegistry
+          file: ./abis/UserRegistry.json
+      eventHandlers:
+        - event: AffiliatePayment(indexed address,indexed address,uint256)
+          handler: handleAffiliatePayment
+        - event: AffiliatePercentChanged(uint256)
+          handler: handleAffiliatePercentChanged
+        - event: ArbitratorRegistryChanged(address)
+          handler: handleArbitratorRegistryChanged
+        - event: DIDRegistered(indexed address,string)
+          handler: handleDIDRegistered
+        - event: DIDUnregistered(indexed address)
+          handler: handleDIDUnregistered
+        - event: Deployed()
+          handler: handleDeployed
+        - event: FeeChanged(indexed uint8,uint256)
+          handler: handleFeeChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: PartnerSet(indexed address,uint256)
+          handler: handlePartnerSet
+        - event: ReferrerSet(indexed address,indexed address)
+          handler: handleReferrerSet
+        - event: RewardedCouponsChanged(uint256)
+          handler: handleRewardedCouponsChanged
+        - event: ScoreThresholdChanged(uint256)
+          handler: handleScoreThresholdChanged
+        - event: SuccessorApproved(indexed uint256)
+          handler: handleSuccessorApproved
+        - event: SuccessorRejected(indexed uint256)
+          handler: handleSuccessorRejected
+        - event: SuccessorRequested(indexed uint256,indexed address,indexed address)
+          handler: handleSuccessorRequested
+      file: ./src/user-registry.ts
+  - kind: ethereum
+    name: RequestHub
+    network: sepolia
+    source:
+      address: "0xBA580fc9B1d63CEde28b9565CD2dEbdaa3C3f1c6"
+      abi: RequestHub
+      startBlock: 4156048
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - RequestHubArbitratorRegistryChanged
+        - BurnAnswered
+        - BurnArbitrateAsked
+        - RequestHubDeployed
+        - DisputeCreated
+        - EntityAddedToRequest
+        - OwnershipAdjusted
+        - OwnershipAdjustmentAnswered
+        - OwnershipAdjustmentArbitrateAsked
+        - OwnershipAdjustmentAsked
+        - OwnershipRestoreAnswered
+        - OwnershipRestoreAsked
+        - RequestHubOwnershipTransferred
+      abis:
+        - name: RequestHub
+          file: ./abis/RequestHub.json
+      eventHandlers:
+        - event: ArbitratorRegistryChanged(address)
+          handler: handleArbitratorRegistryChanged
+        - event: BurnAnswered(indexed uint256,bool)
+          handler: handleBurnAnswered
+        - event: BurnArbitrateAsked(indexed uint256,address)
+          handler: handleBurnArbitrateAsked
+        - event: Deployed()
+          handler: handleDeployed
+        - event: DisputeCreated(indexed uint256,indexed uint256,indexed uint256)
+          handler: handleDisputeCreated
+        - event: EntityAddedToRequest(indexed uint256,indexed uint256,address,address)
+          handler: handleEntityAddedToRequest
+        - event: OwnershipAdjusted(address,address,indexed uint256)
+          handler: handleOwnershipAdjusted
+        - event: OwnershipAdjustmentAnswered(indexed uint256,bool)
+          handler: handleOwnershipAdjustmentAnswered
+        - event: OwnershipAdjustmentArbitrateAsked(indexed uint256,address)
+          handler: handleOwnershipAdjustmentArbitrateAsked
+        - event: OwnershipAdjustmentAsked(indexed uint256,indexed address)
+          handler: handleOwnershipAdjustmentAsked
+        - event: OwnershipRestoreAnswered(indexed uint256,bool)
+          handler: handleOwnershipRestoreAnswered
+        - event: OwnershipRestoreAsked(indexed uint256,address)
+          handler: handleOwnershipRestoreAsked
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/request-hub.ts
+  - kind: ethereum
+    name: Coupons
+    network: sepolia
+    source:
+      address: "0x6CE8A6190423314F4BfaE2999ADf3d39D6F518b2"
+      abi: Coupons
+      startBlock: 4156018
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - CouponsDeployed
+        - CouponsOwnershipTransferred
+        - Transfer
+        - TransferrableSet
+      abis:
+        - name: Coupons
+          file: ./abis/Coupons.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Deployed()
+          handler: handleDeployed
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: TransferrableSet(bool)
+          handler: handleTransferrableSet
+      file: ./src/coupons.ts
+  - kind: ethereum
+    name: ArbitratorRegistry
+    network: sepolia
+    source:
+      address: "0x6b5f8057679F6F35Efd1Ffb9EE90cF71f900bC38"
+      abi: ArbitratorRegistry
+      startBlock: 4155957
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ArbitratorAdded
+        - ArbitratorDeleted
+        - ArbitratorRegistryDeployed
+        - ExtraDataChanged
+        - ArbitratorRegistryOwnershipTransferred
+      abis:
+        - name: ArbitratorRegistry
+          file: ./abis/ArbitratorRegistry.json
+      eventHandlers:
+        - event: ArbitratorAdded(indexed uint256,string,address,bytes)
+          handler: handleArbitratorAdded
+        - event: ArbitratorDeleted(indexed uint256)
+          handler: handleArbitratorDeleted
+        - event: Deployed()
+          handler: handleDeployed
+        - event: ExtraDataChanged(indexed uint256,bytes)
+          handler: handleExtraDataChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/arbitrator-registry.ts

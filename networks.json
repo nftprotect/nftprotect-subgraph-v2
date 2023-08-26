@@ -1,0 +1,20 @@
+{
+  "sepolia": {
+    "NFTProtect2": {
+      "address": "0x9895E315D122511d0268e3736f70B955692c4441",
+      "startBlock": 0
+    },
+    "UserRegistry": {
+      "address": "0x397F88729D47d565a9F7b8e5aCE6ee69b173fd61"
+    },
+    "RequestHub": {
+      "address": "0xBA580fc9B1d63CEde28b9565CD2dEbdaa3C3f1c6"
+    },
+    "Coupons": {
+      "address": "0x6CE8A6190423314F4BfaE2999ADf3d39D6F518b2"
+    },
+    "ArbitratorRegistry": {
+      "address": "0x6b5f8057679F6F35Efd1Ffb9EE90cF71f900bC38"
+    }
+  }
+}

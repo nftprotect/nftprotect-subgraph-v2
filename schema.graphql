@@ -1,0 +1,109 @@
+
+# NFTProtect2 schema
+
+type System @entity
+{
+    id: ID!
+    arbitratorregistry: Bytes
+    nftpcoupons: Bytes
+    nftprotect: Bytes
+    userregistry: Bytes
+    feeBasic: BigInt
+    feeUltra: BigInt
+    burnOnAction: Boolean
+    base: String
+    scoreThreshold: BigInt
+    affiliatePercent: BigInt
+}
+
+type Arbitrator @entity
+{
+    id: ID!
+    name: String!
+    address: Bytes!
+    extraData: Bytes!
+}
+
+type Partner @entity
+{
+    id: ID!
+    percent: BigInt!
+}
+
+type DID @entity
+{
+    id: ID!
+    provider: String!
+}
+
+type User @entity
+{
+    id: ID!
+    referrer: Bytes
+    successor: Bytes
+    coupons: BigInt!
+    tokensProtected: [Token!] @derivedFrom(field: "ownerProtected")
+    tokensOriginal: [Token!] @derivedFrom(field: "ownerOriginal")
+}
+
+type Token @entity
+{
+    id: ID!
+    securityLevel: BigInt!
+    ownerProtected: User!
+    ownerOriginal: User!
+    assetType: BigInt!
+    contract: Bytes!
+    tokenId: BigInt
+    amount: BigInt
+    timestamp: BigInt!
+    blocknumber: BigInt!
+}
+
+enum Status
+{
+    InDispute,
+    Accepted,
+    Rejected
+}
+
+type SuccessorRequest @entity
+{
+    id: ID!
+    status: Status!
+    user: Bytes!
+    successor: Bytes!
+    timestamp: BigInt!
+    blocknumber: BigInt!
+    timestampChange: BigInt
+    blocknumberChange: BigInt
+}
+
+enum ReqType
+{
+    OwnershipAdjustment,
+    OwnershipRestore,
+    Burn
+}
+
+enum ReqStatus
+{
+    Initial,
+    Accepted,
+    Rejected,
+    Disputed
+}
+
+type Request @entity
+{
+    id: ID!
+    type: ReqType!
+    status: ReqStatus!
+    token: Token!
+    oldowner: User
+    newowner: User
+    timestamp: BigInt!
+    blocknumber: BigInt!
+    timestampChange: BigInt
+    blocknumberChange: BigInt
+}
