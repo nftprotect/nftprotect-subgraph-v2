@@ -10,7 +10,7 @@ import
     Deployed as DeployedEvent,
     ExtraDataChanged as ExtraDataChangedEvent,
     OwnershipTransferred as OwnershipTransferredEvent
-} from "../generated/ArbitratorRegistry/ArbitratoRregistry"
+} from "../generated/ArbitratorRegistry/ArbitratorRegistry"
 
 import
 {

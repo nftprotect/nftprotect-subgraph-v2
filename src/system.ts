@@ -24,13 +24,13 @@ export function loadSystem(contract: string): System
     {
         s = s as System;
     }
-    if (contract == "nftprotect" && !s.nftprotect)
+    if (contract == "core" && !s.core)
     {
-        s.nftprotect = dataSource.address();
+        s.core = dataSource.address();
         needToSave = true;
-    } else if (contract == "nftpcoupons" && !s.nftpcoupons)
+    } else if (contract == "coupons" && !s.coupons)
     {
-        s.nftpcoupons = dataSource.address();
+        s.coupons = dataSource.address();
         needToSave = true;
     } else if (contract == "userregistry" && !s.userregistry)
     {

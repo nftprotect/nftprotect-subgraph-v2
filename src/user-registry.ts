@@ -17,25 +17,6 @@ import
     SuccessorRequested as SuccessorRequestedEvent
 } from "../generated/UserRegistry/UserRegistry"
 
-import
-{
-    AffiliatePayment,
-    AffiliatePercentChanged,
-    ArbitratorRegistryChanged,
-    DIDRegistered,
-    DIDUnregistered,
-    Deployed,
-    FeeChanged,
-    OwnershipTransferred,
-    PartnerSet,
-    ReferrerSet,
-    RewardedCouponsChanged,
-    ScoreThresholdChanged,
-    SuccessorApproved,
-    SuccessorRejected,
-    SuccessorRequested
-} from "../generated/schema"
-
 
 export function handleAffiliatePayment(event: AffiliatePaymentEvent): void{}
 

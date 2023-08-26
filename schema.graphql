@@ -5,8 +5,8 @@ type System @entity
 {
     id: ID!
     arbitratorregistry: Bytes
-    nftpcoupons: Bytes
-    nftprotect: Bytes
+    coupons: Bytes
+    core: Bytes
     userregistry: Bytes
     feeBasic: BigInt
     feeUltra: BigInt
