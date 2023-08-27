@@ -100,9 +100,11 @@ type Request @entity
     id: ID!
     type: ReqType!
     status: ReqStatus!
-    entities: [MyEntity!]
+    entities: [MyEntity!]!
     oldowner: User
     newowner: User
+    arbitrator: Arbitrator
+    disputeId: BigInt
     timestamp: BigInt!
     blocknumber: BigInt!
     timestampChange: BigInt
