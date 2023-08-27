@@ -6,6 +6,19 @@
       {
         "indexed": false,
         "internalType": "bool",
+        "name": "allow",
+        "type": "bool"
+      }
+    ],
+    "name": "AllowAnonymousChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bool",
         "name": "boa",
         "type": "bool"
       }
@@ -18,9 +31,91 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "entityId",
+        "type": "uint256"
+      },
+      {
         "indexed": false,
         "internalType": "address",
-        "name": "",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "EntityOriginalOwnerChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "entityId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum Protection",
+        "name": "pr",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "contract IProtector",
+        "name": "protector",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "EntityProtected",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "entityId",
+        "type": "uint256"
+      }
+    ],
+    "name": "EntityUnprotected",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "entityId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "EntityWrappedOwnerChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "mel",
         "type": "address"
       }
     ],
@@ -52,7 +147,32 @@
       {
         "indexed": false,
         "internalType": "contract IProtectorFactory",
-        "name": "",
+        "name": "factory",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "contract IProtector",
+        "name": "protector",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "original",
+        "type": "address"
+      }
+    ],
+    "name": "ProtectorCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "contract IProtectorFactory",
+        "name": "factory",
         "type": "address"
       }
     ],
@@ -65,7 +185,7 @@
       {
         "indexed": false,
         "internalType": "contract IProtectorFactory",
-        "name": "",
+        "name": "factory",
         "type": "address"
       }
     ],
@@ -77,8 +197,8 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "contract IRequestHub",
-        "name": "",
+        "internalType": "contract RequestsHub",
+        "name": "rh",
         "type": "address"
       }
     ],
@@ -91,7 +211,7 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "",
+        "name": "towner",
         "type": "address"
       }
     ],
@@ -104,12 +224,19 @@
       {
         "indexed": false,
         "internalType": "contract IUserRegistry",
-        "name": "",
+        "name": "ureg",
         "type": "address"
       }
     ],
     "name": "UserRegistryChanged",
     "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "_allowAnonymous",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [],
@@ -187,7 +314,7 @@
     "inputs": [],
     "name": "_requestHub",
     "outputs": [
-      { "internalType": "contract IRequestHub", "name": "", "type": "address" }
+      { "internalType": "contract RequestsHub", "name": "", "type": "address" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -354,6 +481,13 @@
     "type": "function"
   },
   {
+    "inputs": [{ "internalType": "bool", "name": "allow", "type": "bool" }],
+    "name": "setAllowAnonymous",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [{ "internalType": "bool", "name": "boa", "type": "bool" }],
     "name": "setBurnOnAction",
     "outputs": [],
@@ -370,7 +504,7 @@
   {
     "inputs": [
       {
-        "internalType": "contract IRequestHub",
+        "internalType": "contract RequestsHub",
         "name": "requestHub",
         "type": "address"
       }

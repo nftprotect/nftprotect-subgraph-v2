@@ -14,6 +14,8 @@ type System @entity
     burnOnAction: Boolean
     scoreThreshold: BigInt
     affiliatePercent: BigInt
+    technicalOwner: Bytes
+    allowAnonymous: Boolean
 }
 
 type Arbitrator @entity
@@ -52,6 +54,7 @@ type MyEntity @entity
     protection: BigInt!
     ownerOriginal: User!
     ownerWrapped: User!
+    protector: Protector!
     timestamp: BigInt!
     blocknumber: BigInt!
 }
@@ -104,4 +107,20 @@ type Request @entity
     blocknumber: BigInt!
     timestampChange: BigInt
     blocknumberChange: BigInt
+}
+
+type ProtectorFactory @entity
+{
+    id: ID!
+    address: Bytes!
+    registered: Boolean!
+    protectors: [Protector!] @derivedFrom(field: "factory")
+}
+
+type Protector @entity
+{
+    id: ID!
+    address: Bytes!
+    original: Bytes!
+    factory: ProtectorFactory!
 }
