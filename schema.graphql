@@ -57,6 +57,8 @@ type MyEntity @entity
     protector: Protector!
     timestamp: BigInt!
     blocknumber: BigInt!
+    burned: Boolean!
+    latestRequest: [Request!] @derivedFrom(field: "entities")
 }
 
 enum Status

@@ -71,12 +71,15 @@ export function handleEntityProtected(event: EntityProtected): void
     e.protector = event.params.protector.toHex().toString();
     e.timestamp = event.block.timestamp;
     e.blocknumber = event.block.number;
+    e.burned = false;
     e.save();
 }
 
 export function handleEntityUnprotected(event: EntityUnprotected): void
 {
-    store.remove("MyEntity", event.params.entityId.toString());
+    //store.remove("MyEntity", event.params.entityId.toString());
+    let e = MyEntity.load(event.params.entityId.toString()) as MyEntity;
+    e.burned = true
 }
 
 export function handleEntityWrappedOwnerChanged(event: EntityWrappedOwnerChanged): void
